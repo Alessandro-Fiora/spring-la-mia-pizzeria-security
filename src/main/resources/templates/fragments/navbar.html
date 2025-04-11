@@ -31,14 +31,19 @@
               <li class="nav-item">
                 <a class="nav-link" th:href="@{/pizzas}">Lista pizze</a>
               </li>
-              <li class="nav-item">
+              <li sec:authorize="hasAuthority('ADMIN')" class="nav-item">
                 <a class="nav-link" th:href="@{/ingredients}">Lista ingredienti</a>
               </li>
             </ul>
-            <form class="d-flex ms-auto" role="search" th:action="@{/pizzas/search}" method="get">
+            <form class="d-flex ms-auto me-3" role="search" th:action="@{/pizzas/search}" method="get">
               <input class="form-control me-2" type="search" name="search" placeholder="Search" aria-label="Search">
               <button class="btn btn-outline-success" type="submit">Search</button>
             </form>
+            <div class="user-info d-flex align-items-center">
+              Logged user: <span sec:authentication="name" class="fs-6 me-2" ></span>
+              Roles: <span sec:authentication="authorities" class="fs-6 me-2" ></span>
+              <a class="btn btn-sm btn-outline-danger" href="/logout">Sign out</a>
+            </div>
           </div>
         </div>
       </nav>

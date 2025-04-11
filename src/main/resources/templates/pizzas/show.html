@@ -21,7 +21,7 @@
                 <div class="col-6">
                   <div class="d-flex justify-content-between">
                     <h1 class="mb-5" th:text="*{nome}" />
-                    <div>
+                    <div sec:authorize="hasAuthority('ADMIN')">
                       <a th:href="@{/pizzas/{id}/offers (id=*{id})}">
                         <button class="btn btn-primary rounded-3">
                           Aggiungi offerta
